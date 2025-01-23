@@ -3,6 +3,5 @@
     { "source": "/api/(.*)", "destination": "/backend/index.js" },
     { "source": "/(.*)", "destination": "/frontend/dist/$1" }
   ],
-
   "outputDirectory": "frontend/dist"
 }
