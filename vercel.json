@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/backend/index.js" },
+    { "source": "/(.*)", "destination": "/frontend/dist/$1" }
+  ],
+  "functions": {
+    "backend/index.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+
+  "outputDirectory": "frontend/dist"
+}
