@@ -32,6 +32,13 @@ app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
 
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+// Fallback for all other routes to serve the index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
+
 
 // api's
 app.use("/api/v1/user", userRoute);
@@ -42,12 +49,6 @@ app.get("/test",()=>{
   console.log("test working")
 })
 
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
-
-// Fallback for all other routes to serve the index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
-});
 
 
 
