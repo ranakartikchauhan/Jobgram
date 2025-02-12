@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
-    origin:'https://jobgram.ranakartikchauhan.in',
+    origin:["http://localhost:8000","http://localhost:5173"],
     credentials:true
 }
 

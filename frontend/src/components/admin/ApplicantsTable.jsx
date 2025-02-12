@@ -27,8 +27,8 @@ const ApplicantsTable = () => {
     }
 
     return (
-        <div>
-            <Table>
+        <div className="overflow-x-auto">
+            <Table className="min-w-full">
                 <TableCaption>A list of your recent applied user</TableCaption>
                 <TableHeader>
                     <TableRow>
@@ -41,16 +41,25 @@ const ApplicantsTable = () => {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {
-                        applicants && applicants?.applications?.map((item) => (
+                    {applicants &&
+                        applicants?.applications?.map((item) => (
                             <tr key={item._id}>
                                 <TableCell>{item?.applicant?.fullname}</TableCell>
                                 <TableCell>{item?.applicant?.email}</TableCell>
                                 <TableCell>{item?.applicant?.phoneNumber}</TableCell>
-                                <TableCell >
-                                    {
-                                        item.applicant?.profile?.resume ? <a className="text-blue-600 cursor-pointer" href={item?.applicant?.profile?.resume} target="_blank" rel="noopener noreferrer">{item?.applicant?.profile?.resumeOriginalName}</a> : <span>NA</span>
-                                    }
+                                <TableCell>
+                                    {item.applicant?.profile?.resume ? (
+                                        <a
+                                            className="text-blue-600 cursor-pointer"
+                                            href={item?.applicant?.profile?.resume}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {item?.applicant?.profile?.resumeOriginalName}
+                                        </a>
+                                    ) : (
+                                        <span>NA</span>
+                                    )}
                                 </TableCell>
                                 <TableCell>{item?.applicant.createdAt.split("T")[0]}</TableCell>
                                 <TableCell className="float-right cursor-pointer">
@@ -59,28 +68,26 @@ const ApplicantsTable = () => {
                                             <MoreHorizontal />
                                         </PopoverTrigger>
                                         <PopoverContent className="w-32">
-                                            {
-                                                shortlistingStatus.map((status, index) => {
-                                                    return (
-                                                        <div onClick={() => statusHandler(status, item?._id)} key={index} className='flex w-fit items-center my-2 cursor-pointer'>
-                                                            <span>{status}</span>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
+                                            {shortlistingStatus.map((status, index) => {
+                                                return (
+                                                    <div
+                                                        onClick={() => statusHandler(status, item?._id)}
+                                                        key={index}
+                                                        className="flex w-fit items-center my-2 cursor-pointer"
+                                                    >
+                                                        <span>{status}</span>
+                                                    </div>
+                                                );
+                                            })}
                                         </PopoverContent>
                                     </Popover>
-
                                 </TableCell>
-
                             </tr>
-                        ))
-                    }
-
+                        ))}
                 </TableBody>
-
             </Table>
         </div>
+
     )
 }
 
